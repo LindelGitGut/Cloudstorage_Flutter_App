@@ -19,7 +19,7 @@ class LoginRepository {
     );
 
     if (response.statusCode != 200) {
-      throw Exception('Failed to log in');
+      throw Exception('Failed to log in ${response.statusCode}');
     }
   }
 }
