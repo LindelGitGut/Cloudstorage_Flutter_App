@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
 import 'package:meta/meta.dart';
 
+import '../../../repo/SignUpRepository.dart';
+
 part 'sign_up_event.dart';
 part 'sign_up_state.dart';
 
@@ -9,7 +11,7 @@ part 'sign_up_state.dart';
 class SignupBloc extends Bloc<SignupEvent, SignupState> {
   final SignupRepository signupRepository;
 
-  SignupBloc({this.signupRepository}) : super(SignupInitial()) {
+  SignupBloc({required this.signupRepository}) : super(SignupInitial()) {
     on<SignupRequested>(_onSignupRequested);
   }
 
