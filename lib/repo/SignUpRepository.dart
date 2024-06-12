@@ -1,10 +1,11 @@
 import 'package:http/http.dart' as http;
 import 'dart:convert';
+import 'package:cloudstorage_flutter_app/conf/config.dart';
 
 class SignupRepository {
   final String baseUrl;
 
-  SignupRepository({this.baseUrl});
+  SignupRepository({this.baseUrl = Config.testURL});
 
   Future<void> signup({required String username, required String password, required String firstName, required String lastName}) async {
     final response = await http.post(
@@ -21,7 +22,7 @@ class SignupRepository {
     );
 
     if (response.statusCode != 201) {
-      throw Exception('Failed to sign up');
+      throw Exception('Failed to sign up: ${response.statusCode}');
     }
   }
 }
