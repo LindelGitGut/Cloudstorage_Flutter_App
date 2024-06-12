@@ -1,3 +1,4 @@
+import 'package:cloudstorage_flutter_app/test/LoginPage.dart';
 import 'package:cloudstorage_flutter_app/test/singuptest.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +16,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: SignupPage(),
+      routes: {
+        '/login': (context) => LoginPage(),
+      },
     );
   }
 }
