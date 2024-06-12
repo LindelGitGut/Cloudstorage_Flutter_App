@@ -29,5 +29,5 @@ class LoginRepository {
     } else if (response.statusCode == 200) {}
   }
 
-  //TODO: Adde Cookie Handelers, make the cookie available across all RepoClasses (not Signup)
+  //TODO: Add Cookie Handlers, make the cookie available across all RepoClasses (not Signup)
 }
