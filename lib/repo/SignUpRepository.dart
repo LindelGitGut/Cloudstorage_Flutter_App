@@ -21,6 +21,10 @@ class SignupRepository {
       }),
     );
 
+    if (response.statusCode==409){
+      throw Exception("Failed to sing up: Username already exists!");
+    }
+
     if (response.statusCode != 201) {
       throw Exception('Failed to sign up: ${response.statusCode}');
     }

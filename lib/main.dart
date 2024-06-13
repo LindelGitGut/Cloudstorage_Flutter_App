@@ -1,6 +1,11 @@
-import 'package:cloudstorage_flutter_app/test/LoginPage.dart';
-import 'package:cloudstorage_flutter_app/test/singuptest.dart';
+
+
 import 'package:flutter/material.dart';
+
+import 'auth/sessionmanager.dart';
+import 'beta/HomePage.dart';
+import 'beta/LoginPage.dart';
+import 'beta/SingupPage.dart';
 
 
 void main() {
@@ -8,6 +13,9 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  
+  Session sessionManager = Session();
+  
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -18,6 +26,8 @@ class MyApp extends StatelessWidget {
       home: SignupPage(),
       routes: {
         '/login': (context) => LoginPage(),
+        '/home': (context) => HomePage(),
+
       },
     );
   }

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:cloudstorage_flutter_app/auth/sessionmanager.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import "package:cloudstorage_flutter_app/conf/config.dart";
@@ -26,8 +27,9 @@ class LoginRepository {
 
     if (response.statusCode != 200) {
       throw Exception('Failed to log in ${response.statusCode}');
-    } else if (response.statusCode == 200) {}
+    } else if (response.statusCode == 200) {
+      Session sessionManager = Session();
+      sessionManager.updateCookie(response);
+    }
   }
-
-  //TODO: Add Cookie Handlers, make the cookie available across all RepoClasses (not Signup)
 }
