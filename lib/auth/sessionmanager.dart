@@ -24,7 +24,7 @@ class Session {
     String? rawCookie = response.headers['set-cookie'];
     if (rawCookie != null) {
       int index = rawCookie.indexOf(';');
-      headers['cookie'] =
+      headers['Cookie'] =
       (index == -1) ? rawCookie : rawCookie.substring(0, index);
     }
   }
