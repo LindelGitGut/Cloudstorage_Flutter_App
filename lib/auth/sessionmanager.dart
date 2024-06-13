@@ -42,4 +42,8 @@ class Session {
       (index == -1) ? rawCookie : rawCookie.substring(0, index);
     }
   }
+
+  void clearCookie(){
+    headers.clear();
+  }
 }
