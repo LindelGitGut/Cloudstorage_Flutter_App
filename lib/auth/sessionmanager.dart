@@ -35,6 +35,15 @@ class Session {
   }
 
   void updateCookie(http.Response response) {
+
+    //TODO debugging comment out or delete
+    print("erhaltene Header updateCookie: " );
+
+    for (String val in response.headers.keys){
+
+        print(val);
+    }
+
     String? rawCookie = response.headers['set-cookie'];
     if (rawCookie != null) {
       int index = rawCookie.indexOf(';');

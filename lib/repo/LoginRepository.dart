@@ -10,8 +10,6 @@ class LoginRepository {
 
   LoginRepository({this.baseUrl = Config.testURL});
 
-  Map<String, String> _cookies = {};
-
   Future<void> login(
       {required String username, required String password}) async {
     final response = await http.post(
