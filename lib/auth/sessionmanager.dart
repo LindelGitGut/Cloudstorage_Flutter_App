@@ -2,7 +2,21 @@ import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
+
+
+
 class Session {
+
+
+// as Singleton
+ Session._privateConstructor();
+ static final Session _instance = Session._privateConstructor();
+
+ factory Session () {
+
+   return _instance;
+ }
+
   Map<String, String> headers = {};
 
   Future<Map> get(String url) async {
