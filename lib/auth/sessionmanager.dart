@@ -1,26 +1,24 @@
 import 'dart:convert';
-
 import 'package:http/http.dart' as http;
 
-
-
-
 class Session {
+  // Singleton
+  Session._privateConstructor();
+  static final Session _instance = Session._privateConstructor();
 
-
-// as Singleton
- Session._privateConstructor();
- static final Session _instance = Session._privateConstructor();
-
- factory Session () {
-
-   return _instance;
- }
+  factory Session() {
+    return _instance;
+  }
 
   Map<String, String> headers = {};
 
-  Future<Map> get(String url) async {
+  // Methode zum Setzen des Authorization-Headers
+  void setAuthHeader(String username, String password) {
+    String basicAuth = 'Basic ' + base64Encode(utf8.encode('$username:$password'));
+    headers['Authorization'] = basicAuth;
+  }
 
+  Future<Map> get(String url) async {
     Uri uri = Uri.parse(url);
     http.Response response = await http.get(uri, headers: headers);
     updateCookie(response);
@@ -35,24 +33,27 @@ class Session {
   }
 
   void updateCookie(http.Response response) {
-
     //TODO debugging comment out or delete
-    print("erhaltene Header updateCookie: " );
+    print("erhaltene Header updateCookie: ");
 
-    for (String val in response.headers.keys){
-
-        print(val);
+    for (String val in response.headers.keys) {
+      print(val);
     }
 
     String? rawCookie = response.headers['set-cookie'];
     if (rawCookie != null) {
+      print(rawCookie);
       int index = rawCookie.indexOf(';');
-      headers['Cookie'] =
-      (index == -1) ? rawCookie : rawCookie.substring(0, index);
+      headers['cookie'] = (index == -1) ? rawCookie : rawCookie.substring(0, index);
+      print(headers['cookie']);
     }
   }
 
-  void clearCookie(){
+  void clearCookie() {
     headers.clear();
+  }
+
+  void clearAuthHeader() {
+    headers.remove('Authorization');
   }
 }
