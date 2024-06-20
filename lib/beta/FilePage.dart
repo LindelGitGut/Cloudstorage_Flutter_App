@@ -26,12 +26,17 @@ class _FilesPageState extends State<FilesPage> {
     if (_selectedFile != null) {
       return TextButton(
         style: TextButton.styleFrom(
-          foregroundColor: Colors.green, // foreground
+          foregroundColor: Colors.green,
+          backgroundColor:  Colors.black,
+
         ),
         onPressed: () {
           // Handle file upload
           print("Uploading file: ${_selectedFile!.path}");
           fileRepository.uploadFile(file: _selectedFile!);
+          setState(() {
+            fileRepository.getAllUploadedFiles();
+          });
 
         },
         child: Text('Upload selected File'),
@@ -42,6 +47,8 @@ class _FilesPageState extends State<FilesPage> {
   }
 
   List<Widget> _getFileTiles() {
+    fileRepository.getAllUploadedFiles();
+
     return [
       ListTile(
         title: Text("Placeholder File 1"),
